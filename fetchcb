@@ -1,0 +1,462 @@
+lib/libalpm/deps.c:110:			alpm_db_get_pkgcache(handle->db_local), targets, _alpm_pkg_cmp);
+lib/libalpm/deps.c:283:	if(!handle->trans) {
+lib/libalpm/deps.c:286:	return (handle->trans->flags & ALPM_TRANS_FLAG_NODEPVERSION);
+lib/libalpm/deps.c:339:					!_alpm_depcmp_provides(depend, handle->assumeinstalled)) {
+lib/libalpm/deps.c:372:						!_alpm_depcmp_provides(depend, handle->assumeinstalled)) {
+lib/libalpm/deps.c:709:				if(_alpm_db_get_pkgfromcache(handle->db_local, pkg->name)) {
+lib/libalpm/deps.c:744:		handle->pm_errno = ALPM_ERR_PKG_IGNORED;
+lib/libalpm/deps.c:746:		handle->pm_errno = ALPM_ERR_PKG_NOT_FOUND;
+lib/libalpm/deps.c:829:			spkg = resolvedep(handle, missdep, handle->dbs_sync, *packages, 0);
+lib/libalpm/deps.c:836:		} else if(resolvedep(handle, missdep, (targ = alpm_list_add(NULL, handle->db_local)), rem, 0)) {
+lib/libalpm/deps.c:839:			handle->pm_errno = ALPM_ERR_UNSATISFIED_DEPS;
+lib/libalpm/hook.c:266:	for(i = handle->trans->add; i; i = i->next) {
+lib/libalpm/hook.c:282:	for(i = handle->trans->add; i; i = i->next) {
+lib/libalpm/hook.c:298:	for(i = handle->trans->remove; i; i = i->next) {
+lib/libalpm/hook.c:370:		for(i = handle->trans->add; i; i = i->next) {
+lib/libalpm/hook.c:396:		for(i = handle->trans->remove; i; i = i->next) {
+lib/libalpm/hook.c:399:				if(!alpm_list_find(handle->trans->add, pkg, _alpm_pkg_cmp)) {
+lib/libalpm/hook.c:509:	alpm_list_t *i, *pkgs = _alpm_db_get_pkgcache(handle->db_local);
+lib/libalpm/hook.c:540:	for(i = alpm_list_last(handle->hookdirs); i; i = alpm_list_previous(i)) {
+lib/libalpm/trans.c:51:	ASSERT(handle->trans == NULL, RET_ERR(handle, ALPM_ERR_TRANS_NOT_NULL, -1));
+lib/libalpm/trans.c:64:	handle->trans = trans;
+lib/libalpm/trans.c:74:	if(!handle->architectures) {
+lib/libalpm/trans.c:89:		for(j = handle->architectures; j; j = j->next) {
+lib/libalpm/trans.c:117:	trans = handle->trans;
+lib/libalpm/trans.c:175:	trans = handle->trans;
+lib/libalpm/trans.c:215:			alpm_errno_t save = handle->pm_errno;
+lib/libalpm/trans.c:217:			handle->pm_errno = save;
+lib/libalpm/trans.c:223:			alpm_errno_t save = handle->pm_errno;
+lib/libalpm/trans.c:225:			handle->pm_errno = save;
+lib/libalpm/trans.c:254:	trans = handle->trans;
+lib/libalpm/trans.c:271:	trans = handle->trans;
+lib/libalpm/trans.c:278:	handle->trans = NULL;
+lib/libalpm/trans.c:361:	len = strlen(handle->root) + strlen("tmp/alpm_XXXXXX") + 1;
+lib/libalpm/trans.c:363:	snprintf(tmpdir, len, "%stmp/", handle->root);
+lib/libalpm/trans.c:367:	snprintf(tmpdir, len, "%stmp/alpm_XXXXXX", handle->root);
+lib/libalpm/trans.c:398:	scriptpath = scriptfn + strlen(handle->root) - 1;
+lib/libalpm/trans.c:431:	ASSERT(handle->trans != NULL, RET_ERR(handle, ALPM_ERR_TRANS_NULL, -1));
+lib/libalpm/trans.c:433:	return handle->trans->flags;
+lib/libalpm/trans.c:440:	ASSERT(handle->trans != NULL, RET_ERR(handle, ALPM_ERR_TRANS_NULL, NULL));
+lib/libalpm/trans.c:442:	return handle->trans->add;
+lib/libalpm/trans.c:449:	ASSERT(handle->trans != NULL, RET_ERR(handle, ALPM_ERR_TRANS_NULL, NULL));
+lib/libalpm/trans.c:451:	return handle->trans->remove;
+lib/libalpm/log.c:58:	if(handle->logstream == NULL && handle->logfile != NULL) {
+lib/libalpm/log.c:61:			fd = open(handle->logfile, O_WRONLY | O_APPEND | O_CREAT | O_CLOEXEC,
+lib/libalpm/log.c:65:		if(fd < 0 || (handle->logstream = fdopen(fd, "a")) == NULL) {
+lib/libalpm/log.c:67:				handle->pm_errno = ALPM_ERR_BADPERMS;
+lib/libalpm/log.c:69:				handle->pm_errno = ALPM_ERR_NOT_A_DIR;
+lib/libalpm/log.c:71:				handle->pm_errno = ALPM_ERR_SYSTEM;
+lib/libalpm/log.c:79:	if(handle->usesyslog) {
+lib/libalpm/log.c:88:	if(handle->logstream) {
+lib/libalpm/log.c:89:		if(_alpm_log_leader(handle->logstream, prefix) < 0
+lib/libalpm/log.c:90:				|| vfprintf(handle->logstream, fmt, args) < 0) {
+lib/libalpm/log.c:92:			handle->pm_errno = ALPM_ERR_SYSTEM;
+lib/libalpm/log.c:94:		fflush(handle->logstream);
+lib/libalpm/log.c:105:	if(handle == NULL || handle->logcb == NULL) {
+lib/libalpm/log.c:110:	handle->logcb(handle->logcb_ctx, flag, fmt, args);
+lib/libalpm/be_local.c:530:	db->handle->pm_errno = ALPM_ERR_DB_VERSION;
+lib/libalpm/be_local.c:1160:	ASSERT(pkg->origin_data.db == pkg->handle->db_local,
+lib/libalpm/be_local.c:1172:	if(_alpm_local_db_write(pkg->handle->db_local, pkg, INFRQ_DESC)) {
+lib/libalpm/be_local.c:1193:		handle->pm_errno = ALPM_ERR_DB_CREATE;
+lib/libalpm/be_local.c:1206:	handle->db_local = db;
+lib/libalpm/diskspace.c:237:		snprintf(path, PATH_MAX, "%s%s", handle->root, filename);
+lib/libalpm/diskspace.c:307:			filename = handle->dbpath;
+lib/libalpm/diskspace.c:310:		snprintf(path, PATH_MAX, "%s%s", handle->root, filename);
+lib/libalpm/diskspace.c:428:	alpm_trans_t *trans = handle->trans;
+lib/libalpm/diskspace.c:436:	root_mp = match_mount_point(mount_points, handle->root);
+lib/libalpm/diskspace.c:439:				handle->root);
+lib/libalpm/diskspace.c:466:		local_pkg = _alpm_db_get_pkgfromcache(handle->db_local, pkg->name);
+lib/libalpm/remove.c:61:	trans = handle->trans;
+lib/libalpm/remove.c:92:	alpm_trans_t *trans = handle->trans;
+lib/libalpm/remove.c:98:			alpm_pkg_t *info = _alpm_db_get_pkgfromcache(handle->db_local, miss->target);
+lib/libalpm/remove.c:116:		lp = alpm_checkdeps(handle, _alpm_db_get_pkgcache(handle->db_local),
+lib/libalpm/remove.c:130:	alpm_trans_t *trans = handle->trans;
+lib/libalpm/remove.c:153:		lp = alpm_checkdeps(handle, _alpm_db_get_pkgcache(handle->db_local),
+lib/libalpm/remove.c:168:	for(i = _alpm_db_get_pkgcache(handle->db_local); i; i = alpm_list_next(i)) {
+lib/libalpm/remove.c:206:	alpm_trans_t *trans = handle->trans;
+lib/libalpm/remove.c:207:	alpm_db_t *db = handle->db_local;
+lib/libalpm/remove.c:324:	snprintf(filepath, PATH_MAX, "%s%s", handle->root, file->name);
+lib/libalpm/remove.c:446:	file_len = snprintf(file, PATH_MAX, "%s%s", handle->root, fileobj->name);
+lib/libalpm/remove.c:450:				handle->root, fileobj->name);
+lib/libalpm/remove.c:483:			local_pkgs = _alpm_db_get_pkgcache(handle->db_local);
+lib/libalpm/remove.c:576:	return _alpm_fnmatch_patterns(handle->noupgrade, path) == 0
+lib/libalpm/remove.c:577:		|| alpm_list_find_str(handle->trans->skip_remove, path)
+lib/libalpm/remove.c:602:	int nosave = handle->trans->flags & ALPM_TRANS_FLAG_NOSAVE;
+lib/libalpm/remove.c:692:				!(handle->trans->flags & ALPM_TRANS_FLAG_NOSCRIPTLET)) {
+lib/libalpm/remove.c:693:			char *scriptlet = _alpm_local_db_pkgpath(handle->db_local,
+lib/libalpm/remove.c:700:	if(!(handle->trans->flags & ALPM_TRANS_FLAG_DBONLY)) {
+lib/libalpm/remove.c:712:			!(handle->trans->flags & ALPM_TRANS_FLAG_NOSCRIPTLET)) {
+lib/libalpm/remove.c:713:		char *scriptlet = _alpm_local_db_pkgpath(handle->db_local,
+lib/libalpm/remove.c:726:	if(_alpm_local_db_remove(handle->db_local, oldpkg) == -1) {
+lib/libalpm/remove.c:731:	if(_alpm_db_remove_pkgfromcache(handle->db_local, oldpkg) == -1) {
+lib/libalpm/remove.c:752:	alpm_trans_t *trans = handle->trans;
+lib/libalpm/remove.c:767:			handle->pm_errno = ALPM_ERR_TRANS_ABORT;
+lib/libalpm/alpm.c:47:	if((myerr = _alpm_set_directory_option(root, &(myhandle->root), 1))) {
+lib/libalpm/alpm.c:50:	if((myerr = _alpm_set_directory_option(dbpath, &(myhandle->dbpath), 1))) {
+lib/libalpm/alpm.c:54:	/* to concatenate myhandle->root (ends with a slash) with SYSHOOKDIR (starts
+lib/libalpm/alpm.c:57:	MALLOC(hookdir, strlen(myhandle->root) + strlen(SYSHOOKDIR), goto nomem);
+lib/libalpm/alpm.c:58:	sprintf(hookdir, "%s%s", myhandle->root, &SYSHOOKDIR[1]);
+lib/libalpm/alpm.c:59:	myhandle->hookdirs = alpm_list_add(NULL, hookdir);
+lib/libalpm/alpm.c:62:	STRDUP(myhandle->dbext, ".db", goto nomem);
+lib/libalpm/alpm.c:64:	lockfilelen = strlen(myhandle->dbpath) + strlen(lf) + 1;
+lib/libalpm/alpm.c:65:	MALLOC(myhandle->lockfile, lockfilelen, goto nomem);
+lib/libalpm/alpm.c:66:	snprintf(myhandle->lockfile, lockfilelen, "%s%s", myhandle->dbpath, lf);
+lib/libalpm/alpm.c:69:		myerr = myhandle->pm_errno;
+lib/libalpm/alpm.c:75:	myhandle->curlm = curl_multi_init();
+lib/libalpm/alpm.c:78:	myhandle->parallel_downloads = 1;
+lib/libalpm/alpm.c:104:	db = myhandle->db_local;
+lib/libalpm/alpm.c:107:		myhandle->db_local = NULL;
+lib/libalpm/alpm.c:115:	curl_multi_cleanup(myhandle->curlm);
+lib/libalpm/alpm.c:117:	FREELIST(myhandle->server_errors);
+lib/libalpm/add.c:63:	trans = handle->trans;
+lib/libalpm/add.c:82:	if((local = _alpm_db_get_pkgfromcache(handle->db_local, pkgname))) {
+lib/libalpm/add.c:187:			_alpm_db_path(handle->db_local), newpkg->name, newpkg->version, dbfile);
+lib/libalpm/add.c:215:	/* build the new entryname relative to handle->root */
+lib/libalpm/add.c:216:	filename_len = snprintf(filename, PATH_MAX, "%s%s", handle->root, entryname);
+lib/libalpm/add.c:219:				_("unable to extract %s%s: path too long"), handle->root, entryname);
+lib/libalpm/add.c:224:	if(_alpm_fnmatch_patterns(handle->noextract, entryname) == 0) {
+lib/libalpm/add.c:303:		if(_alpm_fnmatch_patterns(handle->noupgrade, entryname) == 0) {
+lib/libalpm/add.c:421:	alpm_db_t *db = handle->db_local;
+lib/libalpm/add.c:422:	alpm_trans_t *trans = handle->trans;
+lib/libalpm/add.c:486:			handle->pm_errno = ALPM_ERR_TRANS_ABORT;
+lib/libalpm/add.c:497:		handle->pm_errno = ALPM_ERR_DB_WRITE;
+lib/libalpm/add.c:514:	if(chdir(handle->root) != 0) {
+lib/libalpm/add.c:516:				handle->root, strerror(errno));
+lib/libalpm/add.c:605:		handle->pm_errno = ALPM_ERR_DB_WRITE;
+lib/libalpm/add.c:660:	alpm_trans_t *trans = handle->trans;
+lib/libalpm/add.c:673:		if(handle->trans->state == STATE_INTERRUPTED) {
+lib/libalpm/add.c:680:			handle->pm_errno = ALPM_ERR_TRANS_ABORT;
+lib/libalpm/sync.c:62:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/sync.c:170:			tpkg = alpm_pkg_find(handle->trans->add, spkg->name);
+lib/libalpm/sync.c:206:	trans = handle->trans;
+lib/libalpm/sync.c:211:	for(i = _alpm_db_get_pkgcache(handle->db_local); i; i = i->next) {
+lib/libalpm/sync.c:225:		for(j = handle->dbs_sync; j; j = j->next) {
+lib/libalpm/sync.c:270:			alpm_trans_t *trans = db->handle->trans;
+lib/libalpm/sync.c:276:				alpm_pkg_t *local = _alpm_db_get_pkgfromcache(db->handle->db_local, pkg->name);
+lib/libalpm/sync.c:372:	alpm_trans_t *trans = handle->trans;
+lib/libalpm/sync.c:388:	for(i = handle->dbs_sync; i; i = i->next) {
+lib/libalpm/sync.c:420:		localpkgs = alpm_list_diff(_alpm_db_get_pkgcache(handle->db_local),
+lib/libalpm/sync.c:451:				handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/sync.c:475:					handle->pm_errno = ALPM_ERR_TRANS_DUP_FILENAME;
+lib/libalpm/sync.c:543:				handle->pm_errno = ALPM_ERR_CONFLICTING_DEPS;
+lib/libalpm/sync.c:575:		deps = _alpm_outerconflicts(handle->db_local, trans->add);
+lib/libalpm/sync.c:608:				alpm_pkg_t *local = _alpm_db_get_pkgfromcache(handle->db_local, conflict->package2);
+lib/libalpm/sync.c:613:				handle->pm_errno = ALPM_ERR_CONFLICTING_DEPS;
+lib/libalpm/sync.c:650:		deps = alpm_checkdeps(handle, _alpm_db_get_pkgcache(handle->db_local),
+lib/libalpm/sync.c:653:			handle->pm_errno = ALPM_ERR_UNSATISFIED_DEPS;
+lib/libalpm/sync.c:668:		alpm_pkg_t *lpkg = alpm_db_get_pkg(handle->db_local, spkg->name);
+lib/libalpm/sync.c:723:	for(alpm_list_t *i = handle->trans->add; i; i = i->next) {
+lib/libalpm/sync.c:732:				handle->pm_errno = ALPM_ERR_SERVER_NONE;
+lib/libalpm/sync.c:734:						alpm_strerror(handle->pm_errno), repo->treename);
+lib/libalpm/sync.c:775:	handle->trans->state = STATE_DOWNLOADING;
+lib/libalpm/sync.c:784:		if(handle->checkspace) {
+lib/libalpm/sync.c:857:	for(i = handle->trans->add; i; i = i->next) {
+lib/libalpm/sync.c:885:	numtargs = alpm_list_count(handle->trans->add);
+lib/libalpm/sync.c:887:	for(i = handle->trans->add; i; i = i->next, current++) {
+lib/libalpm/sync.c:982:	for(i = handle->trans->add; i; i = i->next, current++) {
+lib/libalpm/sync.c:999:			v.error = handle->pm_errno;
+lib/libalpm/sync.c:1049:		if(handle->pm_errno == ALPM_ERR_OK) {
+lib/libalpm/sync.c:1070:	for(i = handle->trans->add; i; i = i->next, current++) {
+lib/libalpm/sync.c:1134:		if(handle->pm_errno == ALPM_ERR_OK) {
+lib/libalpm/sync.c:1148:	alpm_trans_t *trans = handle->trans;
+lib/libalpm/sync.c:1190:	alpm_trans_t *trans = handle->trans;
+lib/libalpm/sync.c:1217:	if(handle->checkspace && !(trans->flags & ALPM_TRANS_FLAG_DBONLY)) {
+lib/libalpm/sync.c:1236:	alpm_trans_t *trans = handle->trans;
+lib/libalpm/be_sync.c:46:	size_t len = strlen(handle->dbpath) + 6;
+lib/libalpm/be_sync.c:51:	sprintf(syncpath, "%s%s", handle->dbpath, "sync/");
+lib/libalpm/be_sync.c:80:		db->handle->pm_errno = ALPM_ERR_DB_INVALID_SIG;
+lib/libalpm/be_sync.c:128:			db->handle->pm_errno = ALPM_ERR_DB_INVALID_SIG;
+lib/libalpm/be_sync.c:141:	const char *dbext = handle->dbext;
+lib/libalpm/be_sync.c:151:	handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/be_sync.c:175:		ASSERT(db != handle->db_local, GOTO_ERR(handle, ALPM_ERR_WRONG_ARGS, cleanup));
+lib/libalpm/be_sync.c:247:				alpm_strerror(handle->pm_errno));
+lib/libalpm/be_sync.c:249:		handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/be_sync.c:432:	if(strcmp(db->handle->dbext, ".files") == 0) {
+lib/libalpm/be_sync.c:716:	handle->dbs_sync = alpm_list_add(handle->dbs_sync, db);
+lib/libalpm/dload.c:80:	for(i = handle->server_errors; i; i = i->next) {
+lib/libalpm/dload.c:87:			&& alpm_list_append(&handle->server_errors, h)) {
+lib/libalpm/dload.c:193:	if(payload->handle->dlcb == NULL) {
+lib/libalpm/dload.c:207:	payload->handle->dlcb(payload->handle->dlcb_ctx,
+lib/libalpm/dload.c:329:	if(!handle->disable_dl_timeout) {
+lib/libalpm/dload.c:453:	if(handle->dlcb) {
+lib/libalpm/dload.c:456:		handle->dlcb(handle->dlcb_ctx, payload->remote_name, ALPM_DOWNLOAD_RETRY, &cb_data);
+lib/libalpm/dload.c:507:					handle->pm_errno = ALPM_ERR_RETRIEVE;
+lib/libalpm/dload.c:540:				handle->pm_errno = ALPM_ERR_LIBCURL;
+lib/libalpm/dload.c:548:			handle->pm_errno = ALPM_ERR_SERVER_BAD_URL;
+lib/libalpm/dload.c:562:				handle->pm_errno = ALPM_ERR_LIBCURL;
+lib/libalpm/dload.c:724:	if(handle->dlcb) {
+lib/libalpm/dload.c:728:		handle->dlcb(handle->dlcb_ctx, payload->remote_name, ALPM_DOWNLOAD_COMPLETED, &cb_data);
+lib/libalpm/dload.c:841:	if(handle->dlcb) {
+lib/libalpm/dload.c:843:		handle->dlcb(handle->dlcb_ctx, payload->remote_name, ALPM_DOWNLOAD_INIT, &cb_data);
+lib/libalpm/dload.c:876:	int max_streams = handle->parallel_downloads;
+lib/libalpm/dload.c:878:	CURLM *curlm = handle->curlm;
+lib/libalpm/dload.c:951:	if(handle->fetchcb == NULL) {
+lib/libalpm/dload.c:966:				ret = handle->fetchcb(handle->fetchcb_ctx, payload->fileurl, localpath, payload->force);
+lib/libalpm/dload.c:976:					ret = handle->fetchcb(handle->fetchcb_ctx, fileurl, localpath, payload->force);
+lib/libalpm/dload.c:1047:			payload->download_signature = (handle->siglevel & ALPM_SIG_PACKAGE);
+lib/libalpm/dload.c:1048:			payload->signature_optional = (handle->siglevel & ALPM_SIG_PACKAGE_OPTIONAL);
+lib/libalpm/db.c:51:	ASSERT(handle->trans == NULL, RET_ERR(handle, ALPM_ERR_TRANS_NOT_NULL, NULL));
+lib/libalpm/db.c:57:	for(i = handle->dbs_sync; i; i = i->next) {
+lib/libalpm/db.c:86:	ASSERT(handle->trans == NULL, RET_ERR(handle, ALPM_ERR_TRANS_NOT_NULL, -1));
+lib/libalpm/db.c:89:	for(i = handle->dbs_sync; i; i = i->next) {
+lib/libalpm/db.c:94:	FREELIST(handle->dbs_sync);
+lib/libalpm/db.c:107:	handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/db.c:108:	ASSERT(handle->trans == NULL, RET_ERR(handle, ALPM_ERR_TRANS_NOT_NULL, -1));
+lib/libalpm/db.c:110:	if(db == handle->db_local) {
+lib/libalpm/db.c:111:		handle->db_local = NULL;
+lib/libalpm/db.c:119:		handle->dbs_sync = alpm_list_remove(handle->dbs_sync,
+lib/libalpm/db.c:173:	db->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/db.c:194:	db->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/db.c:225:		return db->handle->siglevel;
+lib/libalpm/db.c:234:	db->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/db.c:242:	db->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/db.c:256:	db->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/db.c:263:	db->handle->pm_errno = 0;
+lib/libalpm/db.c:273:	db->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/db.c:283:	db->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/db.c:342:		dbpath = db->handle->dbpath;
+lib/libalpm/db.c:353:			const char *dbext = db->handle->dbext;
+lib/libalpm/db.c:397:			db->handle->pm_errno = ALPM_ERR_INVALID_REGEX;
+lib/libalpm/db.c:526:			/* handle->error set in local/sync-db-populate */
+lib/libalpm/signing.c:156:	sigdir = handle->gpgdir;
+lib/libalpm/signing.c:160:		handle->pm_errno = ALPM_ERR_NOT_A_FILE;
+lib/libalpm/signing.c:216:	if(alpm_list_find_str(handle->known_keys, fpr)) {
+lib/libalpm/signing.c:237:		handle->known_keys = alpm_list_add(handle->known_keys, strdup(fpr));
+lib/libalpm/signing.c:428:	if(_alpm_access(handle, handle->gpgdir, "pubring.gpg", W_OK)) {
+lib/libalpm/signing.c:501:	if(_alpm_access(handle, handle->gpgdir, "pubring.gpg", W_OK)) {
+lib/libalpm/signing.c:772:	handle->pm_errno = ALPM_ERR_MISSING_CAPABILITY_SIGNATURES;
+lib/libalpm/signing.c:779:	handle->pm_errno = ALPM_ERR_MISSING_CAPABILITY_SIGNATURES;
+lib/libalpm/signing.c:787:	handle->pm_errno = ALPM_ERR_MISSING_CAPABILITY_SIGNATURES;
+lib/libalpm/signing.c:838:	if(ret && handle->pm_errno == ALPM_ERR_SIG_MISSING) {
+lib/libalpm/signing.c:841:			handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/signing.c:995:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/signing.c:1006:	db->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/be_package.c:79:				pkg->handle->pm_errno = ALPM_ERR_MEMORY;
+lib/libalpm/be_package.c:283:	handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/be_package.c:292:			handle->pm_errno = ALPM_ERR_PKG_NOT_FOUND;
+lib/libalpm/be_package.c:294:			handle->pm_errno = ALPM_ERR_BADPERMS;
+lib/libalpm/be_package.c:296:			handle->pm_errno = ALPM_ERR_PKG_OPEN;
+lib/libalpm/be_package.c:344:			handle->pm_errno = ALPM_ERR_PKG_MISSING_SIG;
+lib/libalpm/be_package.c:350:			handle->pm_errno = ALPM_ERR_PKG_INVALID_SIG;
+lib/libalpm/be_package.c:572:			handle->pm_errno = ALPM_ERR_PKG_NOT_FOUND;
+lib/libalpm/be_package.c:574:			handle->pm_errno = ALPM_ERR_BADPERMS;
+lib/libalpm/be_package.c:576:			handle->pm_errno = ALPM_ERR_PKG_OPEN;
+lib/libalpm/be_package.c:682:	handle->pm_errno = ALPM_ERR_PKG_INVALID;
+lib/libalpm/error.c:32:	return handle->pm_errno;
+lib/libalpm/handle.c:46:	handle->lockfd = -1;
+lib/libalpm/handle.c:58:	if(handle->logstream) {
+lib/libalpm/handle.c:59:		fclose(handle->logstream);
+lib/libalpm/handle.c:60:		handle->logstream = NULL;
+lib/libalpm/handle.c:62:	if(handle->usesyslog) {
+lib/libalpm/handle.c:63:		handle->usesyslog = 0;
+lib/libalpm/handle.c:68:	FREELIST(handle->known_keys);
+lib/libalpm/handle.c:72:	_alpm_trans_free(handle->trans);
+lib/libalpm/handle.c:73:	FREE(handle->root);
+lib/libalpm/handle.c:74:	FREE(handle->dbpath);
+lib/libalpm/handle.c:75:	FREE(handle->dbext);
+lib/libalpm/handle.c:76:	FREELIST(handle->cachedirs);
+lib/libalpm/handle.c:77:	FREELIST(handle->hookdirs);
+lib/libalpm/handle.c:78:	FREE(handle->logfile);
+lib/libalpm/handle.c:79:	FREE(handle->lockfile);
+lib/libalpm/handle.c:80:	FREELIST(handle->architectures);
+lib/libalpm/handle.c:81:	FREE(handle->gpgdir);
+lib/libalpm/handle.c:82:	FREELIST(handle->noupgrade);
+lib/libalpm/handle.c:83:	FREELIST(handle->noextract);
+lib/libalpm/handle.c:84:	FREELIST(handle->ignorepkg);
+lib/libalpm/handle.c:85:	FREELIST(handle->ignoregroup);
+lib/libalpm/handle.c:86:	FREELIST(handle->overwrite_files);
+lib/libalpm/handle.c:88:	alpm_list_free_inner(handle->assumeinstalled, (alpm_list_fn_free)alpm_dep_free);
+lib/libalpm/handle.c:89:	alpm_list_free(handle->assumeinstalled);
+lib/libalpm/handle.c:99:	ASSERT(handle->lockfile != NULL, return -1);
+lib/libalpm/handle.c:100:	ASSERT(handle->lockfd < 0, return 0);
+lib/libalpm/handle.c:103:	STRDUP(dir, handle->lockfile, return -1);
+lib/libalpm/handle.c:115:		handle->lockfd = open(handle->lockfile, O_WRONLY | O_CREAT | O_EXCL | O_CLOEXEC, 0000);
+lib/libalpm/handle.c:116:	} while(handle->lockfd == -1 && errno == EINTR);
+lib/libalpm/handle.c:118:	return (handle->lockfd >= 0 ? 0 : -1);
+lib/libalpm/handle.c:124:	ASSERT(handle->lockfile != NULL, return 0);
+lib/libalpm/handle.c:125:	ASSERT(handle->lockfd >= 0, return 0);
+lib/libalpm/handle.c:127:	close(handle->lockfd);
+lib/libalpm/handle.c:128:	handle->lockfd = -1;
+lib/libalpm/handle.c:130:	if(unlink(handle->lockfile) != 0) {
+lib/libalpm/handle.c:142:					_("lock file missing %s\n"), handle->lockfile);
+lib/libalpm/handle.c:144:					"warning: lock file missing %s\n", handle->lockfile);
+lib/libalpm/handle.c:148:					_("could not remove lock file %s\n"), handle->lockfile);
+lib/libalpm/handle.c:150:					"warning: could not remove lock file %s\n", handle->lockfile);
+lib/libalpm/handle.c:162:	return handle->logcb;
+lib/libalpm/handle.c:168:	return handle->logcb_ctx;
+lib/libalpm/handle.c:174:	return handle->dlcb;
+lib/libalpm/handle.c:180:	return handle->dlcb_ctx;
+lib/libalpm/handle.c:186:	return handle->fetchcb;
+lib/libalpm/handle.c:192:	return handle->fetchcb_ctx;
+lib/libalpm/handle.c:198:	return handle->eventcb;
+lib/libalpm/handle.c:204:	return handle->eventcb_ctx;
+lib/libalpm/handle.c:210:	return handle->questioncb;
+lib/libalpm/handle.c:216:	return handle->questioncb_ctx;
+lib/libalpm/handle.c:222:	return handle->progresscb;
+lib/libalpm/handle.c:228:	return handle->progresscb_ctx;
+lib/libalpm/handle.c:234:	return handle->root;
+lib/libalpm/handle.c:240:	return handle->dbpath;
+lib/libalpm/handle.c:246:	return handle->hookdirs;
+lib/libalpm/handle.c:252:	return handle->cachedirs;
+lib/libalpm/handle.c:258:	return handle->logfile;
+lib/libalpm/handle.c:264:	return handle->lockfile;
+lib/libalpm/handle.c:270:	return handle->gpgdir;
+lib/libalpm/handle.c:276:	return handle->usesyslog;
+lib/libalpm/handle.c:282:	return handle->noupgrade;
+lib/libalpm/handle.c:288:	return handle->noextract;
+lib/libalpm/handle.c:294:	return handle->ignorepkg;
+lib/libalpm/handle.c:300:	return handle->ignoregroup;
+lib/libalpm/handle.c:306:	return handle->overwrite_files;
+lib/libalpm/handle.c:312:	return handle->assumeinstalled;
+lib/libalpm/handle.c:318:	return handle->architectures;
+lib/libalpm/handle.c:324:	return handle->checkspace;
+lib/libalpm/handle.c:330:	return handle->dbext;
+lib/libalpm/handle.c:336:	return handle->parallel_downloads;
+lib/libalpm/handle.c:342:	handle->logcb = cb;
+lib/libalpm/handle.c:343:	handle->logcb_ctx = ctx;
+lib/libalpm/handle.c:350:	handle->dlcb = cb;
+lib/libalpm/handle.c:351:	handle->dlcb_ctx = ctx;
+lib/libalpm/handle.c:358:	handle->fetchcb = cb;
+lib/libalpm/handle.c:359:	handle->fetchcb_ctx = ctx;
+lib/libalpm/handle.c:366:	handle->eventcb = cb;
+lib/libalpm/handle.c:367:	handle->eventcb_ctx = ctx;
+lib/libalpm/handle.c:374:	handle->questioncb = cb;
+lib/libalpm/handle.c:375:	handle->questioncb_ctx = ctx;
+lib/libalpm/handle.c:382:	handle->progresscb = cb;
+lib/libalpm/handle.c:383:	handle->progresscb_ctx = ctx;
+lib/libalpm/handle.c:445:	handle->hookdirs = alpm_list_add(handle->hookdirs, newhookdir);
+lib/libalpm/handle.c:454:	if(handle->hookdirs) {
+lib/libalpm/handle.c:455:		FREELIST(handle->hookdirs);
+lib/libalpm/handle.c:477:	handle->hookdirs = alpm_list_remove_str(handle->hookdirs, newhookdir, &vdata);
+lib/libalpm/handle.c:499:	handle->cachedirs = alpm_list_add(handle->cachedirs, newcachedir);
+lib/libalpm/handle.c:508:	if(handle->cachedirs) {
+lib/libalpm/handle.c:509:		FREELIST(handle->cachedirs);
+lib/libalpm/handle.c:531:	handle->cachedirs = alpm_list_remove_str(handle->cachedirs, newcachedir, &vdata);
+lib/libalpm/handle.c:542:	char *oldlogfile = handle->logfile;
+lib/libalpm/handle.c:546:		handle->pm_errno = ALPM_ERR_WRONG_ARGS;
+lib/libalpm/handle.c:550:	STRDUP(handle->logfile, logfile, RET_ERR(handle, ALPM_ERR_MEMORY, -1));
+lib/libalpm/handle.c:557:	if(handle->logstream) {
+lib/libalpm/handle.c:558:		fclose(handle->logstream);
+lib/libalpm/handle.c:559:		handle->logstream = NULL;
+lib/libalpm/handle.c:561:	_alpm_log(handle, ALPM_LOG_DEBUG, "option 'logfile' = %s\n", handle->logfile);
+lib/libalpm/handle.c:569:	if((err = _alpm_set_directory_option(gpgdir, &(handle->gpgdir), 0))) {
+lib/libalpm/handle.c:572:	_alpm_log(handle, ALPM_LOG_DEBUG, "option 'gpgdir' = %s\n", handle->gpgdir);
+lib/libalpm/handle.c:579:	handle->usesyslog = usesyslog;
+lib/libalpm/handle.c:614:	return _alpm_option_strlist_add(handle, &(handle->noupgrade), pkg);
+lib/libalpm/handle.c:619:	return _alpm_option_strlist_set(handle, &(handle->noupgrade), noupgrade);
+lib/libalpm/handle.c:624:	return _alpm_option_strlist_rem(handle, &(handle->noupgrade), pkg);
+lib/libalpm/handle.c:629:	return _alpm_fnmatch_patterns(handle->noupgrade, path);
+lib/libalpm/handle.c:634:	return _alpm_option_strlist_add(handle, &(handle->noextract), path);
+lib/libalpm/handle.c:639:	return _alpm_option_strlist_set(handle, &(handle->noextract), noextract);
+lib/libalpm/handle.c:644:	return _alpm_option_strlist_rem(handle, &(handle->noextract), path);
+lib/libalpm/handle.c:649:	return _alpm_fnmatch_patterns(handle->noextract, path);
+lib/libalpm/handle.c:654:	return _alpm_option_strlist_add(handle, &(handle->ignorepkg), pkg);
+lib/libalpm/handle.c:659:	return _alpm_option_strlist_set(handle, &(handle->ignorepkg), ignorepkgs);
+lib/libalpm/handle.c:664:	return _alpm_option_strlist_rem(handle, &(handle->ignorepkg), pkg);
+lib/libalpm/handle.c:669:	return _alpm_option_strlist_add(handle, &(handle->ignoregroup), grp);
+lib/libalpm/handle.c:674:	return _alpm_option_strlist_set(handle, &(handle->ignoregroup), ignoregrps);
+lib/libalpm/handle.c:679:	return _alpm_option_strlist_rem(handle, &(handle->ignoregroup), grp);
+lib/libalpm/handle.c:684:	return _alpm_option_strlist_add(handle, &(handle->overwrite_files), glob);
+lib/libalpm/handle.c:689:	return _alpm_option_strlist_set(handle, &(handle->overwrite_files), globs);
+lib/libalpm/handle.c:694:	return _alpm_option_strlist_rem(handle, &(handle->overwrite_files), glob);
+lib/libalpm/handle.c:707:	handle->assumeinstalled = alpm_list_add(handle->assumeinstalled, depcpy);
+lib/libalpm/handle.c:714:	if(handle->assumeinstalled) {
+lib/libalpm/handle.c:715:		alpm_list_free_inner(handle->assumeinstalled, (alpm_list_fn_free)alpm_dep_free);
+lib/libalpm/handle.c:716:		alpm_list_free(handle->assumeinstalled);
+lib/libalpm/handle.c:717:		handle->assumeinstalled = NULL;
+lib/libalpm/handle.c:756:	handle->assumeinstalled = alpm_list_remove(handle->assumeinstalled, dep, &assumeinstalled_cmp, (void **)&vdata);
+lib/libalpm/handle.c:767:	handle->architectures = alpm_list_add(handle->architectures, strdup(arch));
+lib/libalpm/handle.c:774:	if(handle->architectures) FREELIST(handle->architectures);
+lib/libalpm/handle.c:775:	handle->architectures = alpm_list_strdup(arches);
+lib/libalpm/handle.c:783:	handle->architectures = alpm_list_remove_str(handle->architectures, arch, &vdata);
+lib/libalpm/handle.c:794:	return handle->db_local;
+lib/libalpm/handle.c:800:	return handle->dbs_sync;
+lib/libalpm/handle.c:806:	handle->checkspace = checkspace;
+lib/libalpm/handle.c:815:	if(handle->dbext) {
+lib/libalpm/handle.c:816:		FREE(handle->dbext);
+lib/libalpm/handle.c:819:	STRDUP(handle->dbext, dbext, RET_ERR(handle, ALPM_ERR_MEMORY, -1));
+lib/libalpm/handle.c:821:	_alpm_log(handle, ALPM_LOG_DEBUG, "option 'dbext' = %s\n", handle->dbext);
+lib/libalpm/handle.c:833:	handle->siglevel = level;
+lib/libalpm/handle.c:845:	return handle->siglevel;
+lib/libalpm/handle.c:853:	handle->localfilesiglevel = level;
+lib/libalpm/handle.c:865:	if(handle->localfilesiglevel & ALPM_SIG_USE_DEFAULT) {
+lib/libalpm/handle.c:866:		return handle->siglevel;
+lib/libalpm/handle.c:868:		return handle->localfilesiglevel;
+lib/libalpm/handle.c:877:	handle->remotefilesiglevel = level;
+lib/libalpm/handle.c:889:	if(handle->remotefilesiglevel & ALPM_SIG_USE_DEFAULT) {
+lib/libalpm/handle.c:890:		return handle->siglevel;
+lib/libalpm/handle.c:892:		return handle->remotefilesiglevel;
+lib/libalpm/handle.c:900:	handle->disable_dl_timeout = disable_dl_timeout;
+lib/libalpm/handle.c:909:	handle->parallel_downloads = num_streams;
+lib/libalpm/util.c:604:	if(chdir(handle->root) != 0) {
+lib/libalpm/util.c:606:				handle->root, strerror(errno));
+lib/libalpm/util.c:611:			cmd, handle->root);
+lib/libalpm/util.c:653:		if(chroot(handle->root) != 0) {
+lib/libalpm/util.c:792:	snprintf(line, PATH_MAX, "%setc/ld.so.conf", handle->root);
+lib/libalpm/util.c:794:		snprintf(line, PATH_MAX, "%s%s", handle->root, LDCONFIG);
+lib/libalpm/util.c:831:	for(i = handle->cachedirs; i; i = i->next) {
+lib/libalpm/util.c:871:	for(i = handle->cachedirs; i; i = i->next) {
+lib/libalpm/util.c:903:	cachedir = handle->cachedirs->prev->data;
+lib/libalpm/conflict.c:318:	snprintf(full_path, PATH_MAX, "%s%s", handle->root, dirpath);
+lib/libalpm/conflict.c:334:		snprintf(full_path, PATH_MAX, "%s%s%s", handle->root, dirpath, name);
+lib/libalpm/conflict.c:380:	for(i = alpm_db_get_pkgcache(handle->db_local); i; i = i->next) {
+lib/libalpm/conflict.c:390:	return _alpm_fnmatch_patterns(handle->overwrite_files, path) == 0
+lib/libalpm/conflict.c:391:		|| _alpm_fnmatch_patterns(handle->overwrite_files, rootedpath) == 0;
+lib/libalpm/conflict.c:419:	rootlen = strlen(handle->root);
+lib/libalpm/conflict.c:452:					snprintf(path, PATH_MAX, "%s%s", handle->root, filename);
+lib/libalpm/conflict.c:468:					if(handle->pm_errno == ALPM_ERR_MEMORY) {
+lib/libalpm/conflict.c:483:		dbpkg = _alpm_db_get_pkgfromcache(handle->db_local, p1->name);
+lib/libalpm/conflict.c:514:			pathlen = snprintf(path, PATH_MAX, "%s%s", handle->root, filestr);
+lib/libalpm/conflict.c:585:				localp2 = _alpm_db_get_pkgfromcache(handle->db_local, p2->name);
+lib/libalpm/conflict.c:594:					handle->trans->skip_remove =
+lib/libalpm/conflict.c:595:						alpm_list_add(handle->trans->skip_remove, strdup(relative_path));
+lib/libalpm/conflict.c:621:				owners = alpm_db_find_file_owners(handle->db_local, dir);
+lib/libalpm/conflict.c:648:				alpm_list_t *local_pkgs = _alpm_db_get_pkgcache(handle->db_local);
+lib/libalpm/conflict.c:673:				if(handle->pm_errno == ALPM_ERR_MEMORY) {
+lib/libalpm/package.c:55:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:67:		pkg->handle->pm_errno = ALPM_ERR_PKG_INVALID;
+lib/libalpm/package.c:185:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:192:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:199:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:206:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:213:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:220:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:227:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:234:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:241:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:248:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:255:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:262:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:269:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:314:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:321:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:328:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:335:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:342:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:349:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:356:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:363:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:370:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:377:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:384:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:391:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:398:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:405:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:412:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:419:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:426:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:435:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:443:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:451:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:458:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:465:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:473:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:480:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:487:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:495:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:525:	pkg->handle->pm_errno = ALPM_ERR_OK;
+lib/libalpm/package.c:529:		find_requiredby(pkg, pkg->handle->db_local, &reqs, optional);
+lib/libalpm/package.c:537:			for(i = pkg->handle->dbs_sync; i; i = i->next) {
+lib/libalpm/package.c:610:		pkg->handle->pm_errno = ALPM_ERR_PKG_INVALID;
+lib/libalpm/package.c:803:	if(alpm_list_find(handle->ignorepkg, pkg->name, _alpm_fnmatch)) {
+lib/libalpm/package.c:810:		if(alpm_list_find(handle->ignoregroup, grp, _alpm_fnmatch)) {
